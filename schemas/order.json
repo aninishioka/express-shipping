@@ -5,14 +5,11 @@
   "description": "Order for a product.",
   "type": "object",
   "properties": {
-    "productId": {"type": "integer"},
+    "productId": {"type": "integer",
+                  "minimum": 1000},
     "name": {"type": "string"},
     "addr": {"type": "string"},
-    "zip": {
-      "type": "string",
-      "minLength": 5,
-      "maxLength": 5
-    }
+    "zip": {"type": "string"}
   },
   "additionalProperties": false,
   "required": [

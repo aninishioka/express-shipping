@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://our.company.com/order.schema.json",
+  "title": "Order",
+  "description": "Order for a product.",
+  "type": "object",
+  "properties": {
+    "productId": {"type": "integer"},
+    "name": {"type": "string"},
+    "addr": {"type": "string"},
+    "zip": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 5
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "productId",
+    "name",
+    "addr",
+    "zip"
+  ]
+}

@@ -9,8 +9,7 @@ const app = require("../app");
 
 describe("POST /", function () {
   test("valid", async function () {
-    // TODO: mockReturnValueOnce
-    shipItApi.shipProduct.mockReturnValue(100000);
+    shipItApi.shipProduct.mockReturnValueOnce(100000);
     const resp = await request(app).post("/shipments").send({
       productId: 1000,
       name: "Test Tester",

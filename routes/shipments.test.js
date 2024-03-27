@@ -1,13 +1,16 @@
 "use strict";
 
+const shipItApi = require("../shipItApi");
+shipItApi.shipProduct = jest.fn();
+
 const request = require("supertest");
 const app = require("../app");
-const fetchMock = require("fetch-mock");
-const BASE_API_URL = "http://localhost:3001";
 
 
 describe("POST /", function () {
   test("valid", async function () {
+    // TODO: mockReturnValueOnce
+    shipItApi.shipProduct.mockReturnValue(100000);
     const resp = await request(app).post("/shipments").send({
       productId: 1000,
       name: "Test Tester",
@@ -15,11 +18,8 @@ describe("POST /", function () {
       zip: "12345-6789",
     });
 
-    fetchMock.post(``)
-
-
     expect(resp.body).toEqual({
-      shipped: expect.any(Number),
+      shipped: 100000,
      });
   });
 
@@ -48,7 +48,7 @@ describe("POST /", function () {
         productId: 1000,
         name: "test",
         addr: "21334 uhhh ave",
-        zip: "65304",
+        zip: "65304-2222",
         extra: "this is not needed"
       });
     expect(resp.statusCode).toEqual(400);
